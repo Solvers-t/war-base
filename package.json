@@ -1,12 +1,12 @@
 {
   "name": "war-base",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A game of bases and war",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -14,10 +14,13 @@
   },
   "author": "Jeferson Alves",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/desenjeferson/war-base/issues"
+  },
   "homepage": "https://github.com/desenjeferson/war-base#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.2",
+    "nodemon": "^2.0.4",
     "socket.io": "^2.3.0"
   }
 }
