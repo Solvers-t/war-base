@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -10,30 +10,57 @@
 </head>
 
 <body>
-    <div class="title">WAR BASE</div>
-    <br>
-    <br>
-    <input id="gamerTag" Placeholder="Gamer Tag" type="text">
-    <br>
-    <br>
-    <input id="gameKey" Placeholder="Game Key" type="text">
-    <button>Join Game</button>
-    <br>
-    <br>
-    <button>Create Game</button>
-    <button>Find Game</button>
+    <section>
+        <section class="credenciais">
+            <div class="title">
+                <h1>WAR BASE</h1>
+            </div>
+            <br>
+            <br>
+            <input onchange="changeGameTag()" id="gamerTag" Placeholder="Gamer Tag" type="text">
+            <br>
+            <br>
+            <input id="gameKey" Placeholder="Game Key" type="text">
+            <button onclick="joinGmae()">Join Game</button>
+            <br>
+            <br>
+            <button onclick="createGame()">Create Game</button>
+            <button onclick="findGame()">Find Game</button>
+        </section>
+        <section><canvas id="screen" width="10" height="10" class='damage-border'></canvas></section>
+    </section>
     <script>
         const socket = io();
-        const playerId = socket.id;
-        
-        function joinGmae(){
-            socket.emit('joinGmae',{playerId,})
+
+        socket.on('setup', (game) => {
+            console.log(game);
+            const screen = document.getElementById('screen');
+            screen.style.display = 'block';
+        })
+
+        function changeGameTag() {
+            const gamerTag = document.getElementById('gamerTag').value
+            socket.emit('changeGameTag', {
+                playerId: socket.id,
+                gamerTag
+            })
         }
-        function createGame(){
-            socket.emit('joinGmae',{playerId,})}
-        function findGame(){
-            socket.emit('joinGmae',{playerId,})}
-        
+
+        function joinGmae() {
+            const gameKey = document.getElementById('gameKey').value
+            socket.emit('joinGmae', {
+                playerId: socket.id,
+                gameKey
+            })
+        }
+
+        function createGame() {
+            socket.emit('createGame', socket.id)
+        }
+
+        function findGame() {
+            socket.emit('findGame', socket.id)
+        }
     </script>
 
 </body>
